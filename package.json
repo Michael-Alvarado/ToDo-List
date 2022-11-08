@@ -2,7 +2,7 @@
   "name": "appmonster",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node seeds/index.js",
@@ -19,11 +19,9 @@
     "url": "https://github.com/shelldan/appMonster/issues"
   },
   "homepage": "https://github.com/shelldan/appMonster#readme",
-  "devDependencies": {
-
-  },
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "bootstrap": "^5.2.2",
     "connect-session-sequelize": "^7.1.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
