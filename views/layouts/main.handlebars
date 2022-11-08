@@ -15,17 +15,14 @@
             Family ToDo List
         </h1>
 
-        <nav>
-            <button class="btn" id="login">Login</button>
-            {{!-- Only display the logout button if the user is logged in --}}
-            {{#if logged_in}}
-            <button class="btn" id="logout">Logout</button>        
-            {{/if}}
-        </nav>
+        {{> navbar}}
+
     </header>
     
-    <main class="container container=fluid">
-        {{{ body }}}
+    <main>
+        <div class="container">
+            {{{ body }}}
+        </div>
     </main>
 
     <footer>
