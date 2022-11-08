@@ -2,7 +2,7 @@
   "name": "appmonster",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node seeds/index.js",
@@ -19,11 +19,9 @@
     "url": "https://github.com/shelldan/appMonster/issues"
   },
   "homepage": "https://github.com/shelldan/appMonster#readme",
-  "devDependencies": {
-
-  },
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "bootstrap": "^5.2.2",
     "connect-session-sequelize": "^7.1.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -31,6 +29,10 @@
     "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
     "mysql2": "^2.3.3",
+    "passport": "^0.6.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0",
     "sequelize": "^6.25.3"
   }
 }

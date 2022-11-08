@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>Family ToDo List</title>
+    <link rel="stylesheet" href="/appMonster/public/css/style.css">
+    <link rel="stylesheet" href="/appMonster/node_modules/bootstrap/dist/css/bootstrap.min.css"
+</head>
+
+<body>
+    <header class="display-flex justify-space-between align-center">
+        <h1>
+            Family ToDo List
+        </h1>
+
+        {{> navbar}}
+
+    </header>
+    
+    <main>
+        <div class="container">
+            {{{ body }}}
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+
+    {{#if logged_in}}
+    <script src="/appMonster/public/js/logout.js"></script>
+    {{/if}}
+</body>
+
+</html>

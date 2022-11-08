@@ -1,0 +1,13 @@
+:root {
+    --lavender-gray: #B8B8D1;
+    --dark-blu-gray: #5B5F97;
+    --deep-saffron: #FF9B42;
+    --baby-powder: #FFFFFB;
+    --bittersweet: #FF6B6C;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: sans-serif, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+}
+
