@@ -5,7 +5,9 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const passport = require('passport');
+const mySQL = require('mysql2');
 const { User } = require('./models');
+const indexRouter = require('./controllers/index');
 
 // const bootstrap = require('bootstrap');
 
@@ -30,23 +32,6 @@ const sess = {
 app.use(session(sess));
 app.use(passport.authenticate('session'));
 
-passport.use(
-	new LocalStrategy(function (username, password, done) {
-		User.findOne({ username: username }, function (err, user) {
-			if (err) {
-				return done(err);
-			}
-			if (!user) {
-				return done(null, false);
-			}
-			if (!user.verifyPassword(password)) {
-				return done(null, false);
-			}
-			return done(null, user);
-		});
-	})
-);
-
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
@@ -65,6 +50,8 @@ app.use(
 	express.static(path.join(__dirname + '/node_modules/bootstrap/dist/js'))
 );
 app.use();
+
+app.use('/', indexRouter);
 
 sequelize.sync({ force: false }).then(() => {
 	app.listen(PORT, () => console.log('Now listening'));

@@ -1,6 +1,7 @@
 const express = require('express');
+const router = express.Router();
 const passport = require('passport');
-const localStrategy = require('passport-local');
+const LocalStrategy = require('passport-local');
 const fbStrategy = require('passport-facebook');
 const googleStrategy = require('passport-google-oauth');
 
@@ -15,6 +16,23 @@ const googleStrategy = require('passport-google-oauth');
  * the hashed password stored in the database.  If the comparison succeeds, the
  * user is authenticated; otherwise, not.
  */
+
+passport.use(
+	new LocalStrategy(function verify(username, password, done) {
+		User.findOne({ username: username }, function (err, user) {
+			if (err) {
+				return done(err);
+			}
+			if (!user) {
+				return done(null, false);
+			}
+			if (!user.verifyPassword(password)) {
+				return done(null, false);
+			}
+			return done(null, user);
+		});
+	})
+);
 
 /* Configure session management.
  *
@@ -31,5 +49,17 @@ const googleStrategy = require('passport-google-oauth');
  * fetch todo records and render the user element in the navigation bar, that
  * information is stored in the session.
  */
+
+passport.serializeUser(function (user, done) {
+	process.nextTick(function () {
+		done(null, { id: user.id, username: user.username });
+	});
+});
+
+passport.deserializeUser(function (user, done) {
+	process.nextTick(function () {
+		return done(null, user);
+	});
+});
 
 module.exports = withAuth;
