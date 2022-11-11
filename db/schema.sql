@@ -1,4 +1,4 @@
-DROP IF EXISTS some_db;
+DROP DATABASE IF EXISTS some_db;
 
 CREATE DATABASE some_db;
 

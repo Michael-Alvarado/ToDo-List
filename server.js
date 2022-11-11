@@ -6,7 +6,7 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const passport = require('passport');
 const mySQL = require('mysql2');
-const { User } = require('./models');
+// const { User } = require('./models');
 const indexRouter = require('./controllers/index');
 const helpers = require('./utils/helpers');
 
@@ -21,8 +21,14 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
+	//TODO: We need to fix the secret later
 	secret: 'We need to fix this later',
-	cookie: {},
+	cookie: {
+		maxAge: 300000, //5 mins = 5 * 60 * 1000 
+		httpOnly: true,
+		secure: false,
+		sameSite: 'strict',
+	},
 	resave: false, // don't save session if unmodified
 	saveUninitialized: true, //
 	store: new SequelizeStore({

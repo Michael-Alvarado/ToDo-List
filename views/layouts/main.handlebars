@@ -14,10 +14,18 @@
         <h1>
             Family ToDo List
         </h1>
-
-        {{> navbar}}
-
     </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/#">Family ToDos</a>
+        {{#if logged_in}}
+        <a class="navbar-brand" href="/user">Logout [{{name}}]</a>
+        {{else}}
+        <a class="navbar-brand" href="/login">Login</a>
+        {{/if}}
+    </nav>
+
     {{!-- the real body --}}
     <main>
         <div class="container container-fluid mt-5">
@@ -28,22 +36,10 @@
         </div>
     </main>
 
-        {{!-- <body>
-            <div class="container container-fluid mt-5"></div>
-            {{> navbar}}
-            {{{ body }}}
-            {{ footer }}
-            </div>
-        </body> --}}
-
-
-
-    {{!-- <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> --}}
     {{#if logged_in}}
-    <script src="/public/js/logout.js"></script>
+    <script src="/js/logout.js"></script>
     {{/if}}
 
-    
 </body>
 
 </html>

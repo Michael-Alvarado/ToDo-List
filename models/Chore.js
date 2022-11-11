@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Chore extends Model {}
@@ -17,7 +16,7 @@ Chore.init(
       allowNull: false,
     },
     due_date:{
-      type: DateTypes.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
       //do we want to have the default value if not assigned? 
       defaultValue: DataTypes.NOW,
@@ -30,7 +29,7 @@ Chore.init(
         key: 'id',
       },
     },
-    role_id: {
+    family_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -44,7 +43,7 @@ Chore.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'family'
+    modelName: 'chore'
   }
 )
 

@@ -1,19 +1,9 @@
 const User = require('./User');
-const Family = require('./Family');
-const Chore = require('./Family');
+const Family = require('./Family'); //really just meant role 
+const Chore = require('./Chore');
 
-Family.hasMany(User, {
-    foreignKey: 'role_id',
-    onDelete: 'CASCADE',
-});
-
-Family.hasMany(Chore, {
-    foreignKey: 'role_id',
-    onDelete: 'CASCADE',
-});
-
-User.belongsTo(Family, {
-    foreignKey: 'role_id',
+User.hasMany(Family, {
+    foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
 
@@ -22,13 +12,23 @@ User.hasMany(Chore, {
     onDelete: 'CASCADE',
 });
 
-Chore.belongsTo(Family, {
-    foreignKey: 'role_id',
+Family.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE',
+});
+
+Family.hasMany(Chore, {
+    foreignKey: 'family_id',
     onDelete: 'CASCADE',
 });
 
 Chore.belongsTo(User, {
     foreignKey: 'user_id',
+    onDelete: 'CASCADE',
+});
+
+Chore.belongsTo(Family, {
+    foreignKey: 'family_id',
     onDelete: 'CASCADE',
 });
 

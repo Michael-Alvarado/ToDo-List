@@ -8,23 +8,20 @@ const loginFormHandler = async (event) => {
 
 	if (email && password) {
 		// Send the e-mail and password to the server
-		const response = await fetch('/api/users/login', {
+		const response = await fetch('/api/user/login', {
 			method: 'POST',
 			body: JSON.stringify({ email, password }),
 			headers: { 'Content-Type': 'application/json' },
 		});
 
 		if (response.ok) {
-			document.location.replace('/');
+			//if successful, redirect the browser to user.handlebars
+			document.location.replace('/user');
 		} else {
 			alert('Failed to log in');
 		}
 	}
 };
-
-document
-	.querySelector('.login-form')
-	.addEventListener('submit', loginFormHandler);
 
 // option if we are putting the sign up form also
 
@@ -36,16 +33,15 @@ const signupFormHandler = async (event) => {
 	const password = document.querySelector('#password-signup').value.trim();
 
 	if (name && email && password) {
-		// may have to change route if we have a different name
-		const response = await fetch('/api/userRoutes', {
+		const response = await fetch('/api/user', {
 			method: 'POST',
-			body: JSON.stringify({ name, email, password }),
+			body: JSON.stringify({ username, email, password }),
 			headers: { 'Content-Type': 'application/json' },
 		});
 
 		if (response.ok) {
 			// check to see if its right route to replace location
-			document.location.replace('/chore');
+			document.location.replace('/user');
 		} else {
 			alert(response.statusText);
 		}
