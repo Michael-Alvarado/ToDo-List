@@ -11,7 +11,9 @@
     font-family: sans-serif, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
 }
 
-
+body {
+    background-color: var(--dark-blu-gray);
+}
 
 /* body {
     margin: 0;

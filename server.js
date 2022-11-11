@@ -8,6 +8,7 @@ const passport = require('passport');
 const mySQL = require('mysql2');
 const { User } = require('./models');
 const indexRouter = require('./controllers/index');
+const helpers = require('./utils/helpers');
 
 // const bootstrap = require('bootstrap');
 
@@ -49,7 +50,7 @@ app.use(
 	'/js',
 	express.static(path.join(__dirname + '/node_modules/bootstrap/dist/js'))
 );
-app.use();
+// app.use();
 
 app.use('/', indexRouter);
 

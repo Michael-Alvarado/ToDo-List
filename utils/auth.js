@@ -5,6 +5,23 @@ const LocalStrategy = require('passport-local');
 const fbStrategy = require('passport-facebook');
 const googleStrategy = require('passport-google-oauth');
 
+const withAuth = (req, res, next) => {
+	// If the user isn't logged in, redirect them to the login route
+	if (!req.session.logged_in) {
+		res.redirect('/login');
+	} else {
+		next();
+	}
+};
+
+// router.post(
+// 	'/login',
+// 	passport.authenticate('local', { failureRedirect: '/login' }),
+// 	function (req, res) {
+// 		res.redirect('/');
+// 	}
+// );
+
 /* Configure password authentication strategy.
  *
  * The `LocalStrategy` authenticates users by verifying a username and password.
@@ -17,22 +34,22 @@ const googleStrategy = require('passport-google-oauth');
  * user is authenticated; otherwise, not.
  */
 
-passport.use(
-	new LocalStrategy(function verify(username, password, done) {
-		User.findOne({ username: username }, function (err, user) {
-			if (err) {
-				return done(err);
-			}
-			if (!user) {
-				return done(null, false);
-			}
-			if (!user.verifyPassword(password)) {
-				return done(null, false);
-			}
-			return done(null, user);
-		});
-	})
-);
+// passport.use(
+// 	new LocalStrategy(function verify(username, password, done) {
+// 		User.findOne({ username: username }, function (err, user) {
+// 			if (err) {
+// 				return done(err);
+// 			}
+// 			if (!user) {
+// 				return done(null, false);
+// 			}
+// 			if (!user.verifyPassword(password)) {
+// 				return done(null, false);
+// 			}
+// 			return done(null, user);
+// 		});
+// 	})
+// );
 
 /* Configure session management.
  *
@@ -50,16 +67,16 @@ passport.use(
  * information is stored in the session.
  */
 
-passport.serializeUser(function (user, done) {
-	process.nextTick(function () {
-		done(null, { id: user.id, username: user.username });
-	});
-});
+// passport.serializeUser(function (user, done) {
+// 	process.nextTick(function () {
+// 		done(null, { id: user.id, username: user.username });
+// 	});
+// });
 
-passport.deserializeUser(function (user, done) {
-	process.nextTick(function () {
-		return done(null, user);
-	});
-});
+// passport.deserializeUser(function (user, done) {
+// 	process.nextTick(function () {
+// 		return done(null, user);
+// 	});
+// });
 
 module.exports = withAuth;
