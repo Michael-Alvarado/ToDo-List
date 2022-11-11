@@ -31,3 +31,5 @@ const googleStrategy = require('passport-google-oauth');
  * fetch todo records and render the user element in the navigation bar, that
  * information is stored in the session.
  */
+
+module.exports = withAuth;

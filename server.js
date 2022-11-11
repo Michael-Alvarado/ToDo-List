@@ -5,8 +5,9 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const passport = require('passport');
+const { User } = require('./models');
 
-const bootstrap = require('bootstrap');
+// const bootstrap = require('bootstrap');
 
 // Create a new sequelize store using the express-session package
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -28,6 +29,23 @@ const sess = {
 
 app.use(session(sess));
 app.use(passport.authenticate('session'));
+
+passport.use(
+	new LocalStrategy(function (username, password, done) {
+		User.findOne({ username: username }, function (err, user) {
+			if (err) {
+				return done(err);
+			}
+			if (!user) {
+				return done(null, false);
+			}
+			if (!user.verifyPassword(password)) {
+				return done(null, false);
+			}
+			return done(null, user);
+		});
+	})
+);
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

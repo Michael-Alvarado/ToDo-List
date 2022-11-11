@@ -2,6 +2,14 @@ const router = require('express').Router();
 const { Chore, Family, User } = require('../models');
 const withAuth = require('../utils/auth');
 
+router.post(
+	'/login',
+	passport.authenticate('local', { failureRedirect: '/login' }),
+	function (req, res) {
+		res.redirect('/');
+	}
+);
+
 router.get('/', async (req, res) => {
 	try {
 		// Get all chores and JOIN with user data
