@@ -13,12 +13,12 @@ const seedDatabase = async () => {
 		returning: true,
 	});
 
-	const posts = await Family.bulkCreate(familyData, {
+	const family = await Family.bulkCreate(familyData, {
 		individualHooks: true,
 		returning: true,
 	});
 
-	const comments = await Chore.bulkCreate(choreData, {
+	const chores = await Chore.bulkCreate(choreData, {
 		individualHooks: true,
 		returning: true,
 	});

@@ -1,28 +1,60 @@
 const router = require('express').Router();
-const passport = require('passport');
-
 const { Chore, Family, User } = require('../models');
 const withAuth = require('../utils/auth');
-// const { route } = require('./api');
+const passport = require('passport');
 
+/* localhost:3001/ -> home page */
+/* I believe we only want a landing page here, therefore no need to pass anything {object} */
+router.get('/', async (req, res) => {
+	try{
+		res.render('homepage');
+	} catch (err) {
+		res.status(500).json(err)
+	}
+});
+
+/* localhost:3001/login -> login page */
+/* during testing, if you get stuck in the session, you need to clear it -> right click 'inspect' on google chrome -> Application -> Cookies -> clear */
 router.get('/login', (req, res) => {
-	//app.use(session(sess))
-	//question: where to find session.logged_in?
 	if (req.session.logged_in) {
-		res.redirect('/');
+		//if logged in, redirect to the user.handlebars
+		res.redirect('/user');
 		return;
 	}
-	console.log(req.session.logged_in);
+
 	res.render('login');
 });
 
-// router.post(
-// 	'/login/password',
-// 	passport.authenticate('local', {
-// 		successRedirect: '/',
-// 		failureRedirect: '/login',
-// 	})
-// );
+/* localhost:3001/user -> user page */
+router.get('/user', async (req, res) => {
+
+	//when the user logged in or sign up, we want to pass 'welcome, {{user}}' so we need to pass user model
+	//also, we want to pass the logged in with {{#if}} {{else}} {{/if}} to manage the logout, otherwise it will stay logged in
+	//this page will be adding the family role, so we will pass the family model 
+	try {
+		const familyData = await Family.findAll({
+			attributes: ['id','role'],
+			include: [
+				{
+					model: User,
+					attributes: ['name'],
+				}
+			],
+		});
+
+		const families = familyData.map((family) => family.get({plain: true}))
+		
+		res.render('user',{
+			families,
+			logged_in: req.session.logged_in,
+			name: req.session.name,
+		})
+	} catch (err){
+		console.log(err)
+		res.status(500).json(err)
+	}
+})
+
 
 router.post('/logout', function (req, res, next) {
 	req.logout(function (err) {
@@ -49,30 +81,6 @@ router.post('/signup', function (req, res, next) {
 	});
 });
 
-router.get('/', async (req, res) => {
-	try {
-		// Get all chores and JOIN with user data
-		const choreData = await Chore.findAll({
-			include: [
-				{
-					model: User,
-					attributes: ['name'],
-				},
-			],
-		});
-
-		// Serialize data so the template can read it
-		const chores = choreData.map((chore) => chore.get({ plain: true }));
-
-		// Pass serialized data and session flag into template
-		res.render('homepage', {
-			chores,
-			logged_in: req.session.logged_in,
-		});
-	} catch (err) {
-		res.status(500).json(err);
-	}
-});
 
 router.get('/chore/:id', async (req, res) => {
 	try {
