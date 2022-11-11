@@ -5,8 +5,11 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const passport = require('passport');
+const mySQL = require('mysql2');
+const { User } = require('./models');
+const indexRouter = require('./controllers/index');
 
-const bootstrap = require('bootstrap');
+// const bootstrap = require('bootstrap');
 
 // Create a new sequelize store using the express-session package
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -47,6 +50,8 @@ app.use(
 	express.static(path.join(__dirname + '/node_modules/bootstrap/dist/js'))
 );
 app.use();
+
+app.use('/', indexRouter);
 
 sequelize.sync({ force: false }).then(() => {
 	app.listen(PORT, () => console.log('Now listening'));

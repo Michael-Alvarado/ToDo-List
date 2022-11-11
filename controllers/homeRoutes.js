@@ -1,6 +1,50 @@
 const router = require('express').Router();
+const passport = require('passport');
+
 const { Chore, Family, User } = require('../models');
 const withAuth = require('../utils/auth');
+const { route } = require('./api');
+
+router.post(
+	'/login',
+	passport.authenticate('local', { failureRedirect: '/login' }),
+	function (req, res) {
+		res.redirect('/');
+	}
+);
+
+router.post(
+	'/login/password',
+	passport.authenticate('local', {
+		successRedirect: '/',
+		failureRedirect: '/login',
+	})
+);
+
+router.post('/logout', function (req, res, next) {
+	req.logout(function (err) {
+		if (err) {
+			return next(err);
+		}
+		res.redirect('/');
+	});
+});
+
+router.get('/signup', function (req, res, next) {
+	res.render('signup');
+});
+
+router.post('/signup', function (req, res, next) {
+	const userData = User.create(req.body);
+	req.session.save(() => {
+		req.session.user_id = userData.id;
+		req.session.name = userData.name;
+		req.session.logged_in = true;
+
+		res.status(201).json({ message: `Successfully created ${userData.name}` });
+		res.redirect('/');
+	});
+});
 
 router.get('/', async (req, res) => {
 	try {
