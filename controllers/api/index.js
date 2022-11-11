@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
 const familyRoutes = require('./familyRoutes');
-const choreRoutes = require('./choretRoutes');
+const choreRoutes = require('./choreRoutes');
 
 router.use('/user', userRoutes);
 router.use('/family', familyRoutes);

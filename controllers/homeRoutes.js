@@ -3,23 +3,26 @@ const passport = require('passport');
 
 const { Chore, Family, User } = require('../models');
 const withAuth = require('../utils/auth');
-const { route } = require('./api');
+// const { route } = require('./api');
 
-router.post(
-	'/login',
-	passport.authenticate('local', { failureRedirect: '/login' }),
-	function (req, res) {
+router.get('/login', (req, res) => {
+	//app.use(session(sess))
+	//question: where to find session.logged_in?
+	if (req.session.logged_in) {
 		res.redirect('/');
+		return;
 	}
-);
+	console.log(req.session.logged_in);
+	res.render('login');
+});
 
-router.post(
-	'/login/password',
-	passport.authenticate('local', {
-		successRedirect: '/',
-		failureRedirect: '/login',
-	})
-);
+// router.post(
+// 	'/login/password',
+// 	passport.authenticate('local', {
+// 		successRedirect: '/',
+// 		failureRedirect: '/login',
+// 	})
+// );
 
 router.post('/logout', function (req, res, next) {
 	req.logout(function (err) {
@@ -82,7 +85,7 @@ router.get('/chore/:id', async (req, res) => {
 			],
 		});
 
-		const project = projectData.get({ plain: true });
+		const chore = choreData.get({ plain: true });
 
 		res.render('chore', {
 			...chore,
