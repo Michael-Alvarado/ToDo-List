@@ -3,6 +3,15 @@ const { Chore, Family, User } = require('../models');
 const withAuth = require('../utils/auth');
 const passport = require('passport');
 
+/**
+ * ! STEP TO RUN THE APP
+ * ! mysql -u root -p; SOURCE db/schema.sql;
+ * ! npm run seed
+ * ! npm run nodemon
+ * ! during testing, if you get stuck in the session, you need to clear it -> right click 'inspect' on google chrome -> Application -> Cookies -> clear
+ * ! HomeRoute should be GET request only because POST, PUT, and DELETE should be handled by respective api route
+ */
+
 /* localhost:3001/ -> home page */
 /* I believe we only want a landing page here, therefore no need to pass anything {object} */
 router.get('/', async (req, res) => {
@@ -14,7 +23,6 @@ router.get('/', async (req, res) => {
 });
 
 /* localhost:3001/login -> login page */
-/* during testing, if you get stuck in the session, you need to clear it -> right click 'inspect' on google chrome -> Application -> Cookies -> clear */
 router.get('/login', (req, res) => {
 	if (req.session.logged_in) {
 		//if logged in, redirect to the user.handlebars
@@ -25,8 +33,12 @@ router.get('/login', (req, res) => {
 	res.render('login');
 });
 
+router.get('/signup', function (req, res, next) {
+	res.render('signup');
+});
+
 /* localhost:3001/user -> user page */
-router.get('/user', async (req, res) => {
+router.get('/user', withAuth, async (req, res) => {
 
 	//when the user logged in or sign up, we want to pass 'welcome, {{user}}' so we need to pass user model
 	//also, we want to pass the logged in with {{#if}} {{else}} {{/if}} to manage the logout, otherwise it will stay logged in
@@ -55,33 +67,40 @@ router.get('/user', async (req, res) => {
 	}
 })
 
+/* localhost: 3001 -> add new role */
+router.get('/user/new', (req, res) => {
+	res.render('new-role', { name:req.session.name })
+})
 
-router.post('/logout', function (req, res, next) {
-	req.logout(function (err) {
-		if (err) {
-			return next(err);
-		}
-		res.redirect('/');
-	});
-});
+router.get('/user/edit/:id', async (req, res) => {
+	try{
+		const familyData = await Family.findOne({
+			where: {
+				id: req.params.id,
+			},
+			attributes: ['id', 'role', 'family_name']
+		});
+		
+		//not using map because map will return array, since findOne will only return one result, therefore we will not use map here.
+		const family = familyData.get({plain: true})
 
-router.get('/signup', function (req, res, next) {
-	res.render('signup');
-});
+		res.render('edit-user', {
+			family,
+			logged_in: true,
+			name: req.session.name,
+		});
+	} catch (err){
+		console.log(err);
+		res.status(500).json(err);
+	}
+})
 
-router.post('/signup', function (req, res, next) {
-	const userData = User.create(req.body);
-	req.session.save(() => {
-		req.session.user_id = userData.id;
-		req.session.name = userData.name;
-		req.session.logged_in = true;
+/* localhost:3001/chore */
+router.get('/chore', async (req, res) => {
 
-		res.status(201).json({ message: `Successfully created ${userData.name}` });
-		res.redirect('/');
-	});
-});
+})
 
-
+/* localhost:3001/chore/1 */
 router.get('/chore/:id', async (req, res) => {
 	try {
 		const choreData = await Chore.findByPk(req.params.id, {

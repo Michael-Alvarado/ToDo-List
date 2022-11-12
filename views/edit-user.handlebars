@@ -1,0 +1,14 @@
+<div class="card">
+    <h3 class="card-header">Edit Role</h3>
+    <form class="card-body edit-role-form">
+        <label for="edit-family-role" class="form-label">Role</label>
+        <input name="edit-family-role" type="text" class="form-input" value="{{family.role}}" id="edit-family-role">
+        <label for="edit-family-name" class="form-label">Family Name</label>
+        <input name="edit-family-name" type="text" class="form-input" value="{{family.family_name}}" id="edit-family-name">
+        <button type="submit" class="btn">Update Role</button>
+        <button type="button" class="delete-role-btn btn">Delete Role</button>
+    </form>
+</div>
+
+<script src="/js/edit-role.js"></script>
+<script src="/js/delete-role.js"></script>
