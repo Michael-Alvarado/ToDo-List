@@ -24,7 +24,8 @@ const sess = {
 	//TODO: We need to fix the secret later
 	secret: 'We need to fix this later',
 	cookie: {
-		maxAge: 300000, //5 mins = 5 * 60 * 1000 
+		// TODO: SHOULD BE 300000 (5 0s), but use (6 0s) for now, otherwise it will log out automatically after 5 mins
+		maxAge: 3000000, //5 mins = 5 * 60 * 1000 
 		httpOnly: true,
 		secure: false,
 		sameSite: 'strict',

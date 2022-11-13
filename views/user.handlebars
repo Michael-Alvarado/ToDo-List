@@ -1,22 +1,23 @@
-{{!-- this will be the user column that displayes the user id and the user role within the family he is tied to and the chores he has --}}
-{{!-- put user name on the top right of the navbar --}}
-{{!-- create handlebar for the role
-app.use'.home/family', asyn(req, res) =>
-try(
-    res.render('family', role--}}
 <div class="text-left">
-    {{!-- <h2>{{role}}</h2>
-    <p>{{chore_description}}</p>
-    <p>{{chore_creator date_due}}</p> --}}
-    <p>You're LoggedIn</p>
-    <p>Welcome, {{user.name}}</p>
+    <p>Welcome, {{name}}</p>
 </div>
 
-<div>
-    <p>What is your role?</p>
-    <input type="text">
-    <button>Add role</button>
-</div>
+{{#if families.length}}
+<section>
+    <h2>Family Tree</h2>
+    {{#each families as |family|}}
+    {{> user-details family}}
+    {{/each}}
+</section>
+{{/if}}
+
+<button type="submit" class="btn"><a href="/user/new">+ New Role</a></button>
+<button><a href="/chore">Next</a></button>
+
+<script src="/js/add-role.js"></script>
+
+
+
 
 
 

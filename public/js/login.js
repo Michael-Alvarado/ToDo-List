@@ -1,3 +1,4 @@
+/* login */
 const loginFormHandler = async (event) => {
 	// Stop the browser from submitting the form so we can do so with JavaScript
 	event.preventDefault();
@@ -7,7 +8,7 @@ const loginFormHandler = async (event) => {
 	const password = document.querySelector('#password-login').value.trim();
 
 	if (email && password) {
-		// Send the e-mail and password to the server
+		// Send [{ email, password }]to the server
 		const response = await fetch('/api/user/login', {
 			method: 'POST',
 			body: JSON.stringify({ email, password }),
@@ -15,7 +16,7 @@ const loginFormHandler = async (event) => {
 		});
 
 		if (response.ok) {
-			//if successful, redirect the browser to user.handlebars
+			//if logged in, redirect the browser to /user user.handlebars
 			document.location.replace('/user');
 		} else {
 			alert('Failed to log in');
@@ -23,8 +24,7 @@ const loginFormHandler = async (event) => {
 	}
 };
 
-// option if we are putting the sign up form also
-
+/* sign up */
 const signupFormHandler = async (event) => {
 	event.preventDefault();
 
@@ -33,14 +33,15 @@ const signupFormHandler = async (event) => {
 	const password = document.querySelector('#password-signup').value.trim();
 
 	if (name && email && password) {
+		/* POST [{name, email, password}] to localhost:3001/api/user */
 		const response = await fetch('/api/user', {
 			method: 'POST',
-			body: JSON.stringify({ username, email, password }),
+			body: JSON.stringify({ name, email, password }),
 			headers: { 'Content-Type': 'application/json' },
 		});
 
 		if (response.ok) {
-			// check to see if its right route to replace location
+			//if signed up, redirect the browser to /user (user.handlebars)
 			document.location.replace('/user');
 		} else {
 			alert(response.statusText);
