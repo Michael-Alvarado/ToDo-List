@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Chore, Family, User } = require('../models');
+const { Family, User } = require('../models');
 const withAuth = require('../utils/auth');
 const passport = require('passport');
 
@@ -95,32 +95,5 @@ router.get('/user/edit/:id', async (req, res) => {
 	}
 })
 
-/* localhost:3001/chore */
-router.get('/chore', async (req, res) => {
-
-})
-
-/* localhost:3001/chore/1 */
-router.get('/chore/:id', async (req, res) => {
-	try {
-		const choreData = await Chore.findByPk(req.params.id, {
-			include: [
-				{
-					model: User,
-					attributes: ['name'],
-				},
-			],
-		});
-
-		const chore = choreData.get({ plain: true });
-
-		res.render('chore', {
-			...chore,
-			logged_in: req.session.logged_in,
-		});
-	} catch (err) {
-		res.status(500).json(err);
-	}
-});
 
 module.exports = router;

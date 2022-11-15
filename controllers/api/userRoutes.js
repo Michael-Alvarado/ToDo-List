@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Family, Chore } = require('../../models');
+const { User, Family } = require('../../models');
 
 router.get('/', async (req, res) => {
   try{
@@ -18,10 +18,6 @@ router.get('/:id', async (req, res) => {
       attributes: { exclude: ['password'] },
       where: {id: req.params.id },
       include: [
-        {
-          model: Chore,
-          attributes: ['id','description','due_date'],
-        },
         {
           model: Family,
           attributes: ['id','role']
