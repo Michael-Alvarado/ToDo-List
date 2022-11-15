@@ -5,28 +5,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device=width, initial-scale=1.0" />
     <title>Family ToDo List</title>
-    <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/jass.css">
+    <link rel="stylesheet" href="/css/style.css" />
     
 </head>
 
 <body>
-    <header class="display-flex justify-space-between align-center">
-        <h1>
-            Family ToDo List
-        </h1>
-    </header>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Home</a>
-        {{#if logged_in}}
-        {{!-- TODO: update the family and User route later --}}
-        <a class="navbar-brand" href="/user">User</a>
-        <a class="navbar-brand" href="/family">Family</a>
-        <a class="navbar-brand" href="/user" id="logout">Logout [{{name}}]</a>
-        {{else}}
-        <a class="navbar-brand" href="/login">Login</a>
-        {{/if}}
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="logo"><i class="fa-solid fa-clipboard-list fa-2x"></i></a></div>
+        <div>
+            <a class="navbar-brand" href="/">Home</a>
+            {{#if logged_in}}
+            {{!-- TODO: update the family and User route later --}}
+            <a class="navbar-brand" href="/user">User</a>
+            <a class="navbar-brand" href="/user" id="logout">Logout [{{name}}]</a>
+            {{else}}
+            <a class="navbar-brand" href="/login">Login</a>
+            {{/if}}            
+        </div>
     </nav>
 
     {{!-- the real body --}}
@@ -39,18 +37,13 @@
     </main>
 
     {{!-- TODO: will add the footer at the last --}}
-    <footer>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-    </footer>
+    <footer>Design by the <span>AppMonster</span> Team</footer>
 
     {{#if logged_in}}
     <script src="/js/logout.js"></script>
     {{/if}}
 
+    <script src="https://kit.fontawesome.com/539482849d.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

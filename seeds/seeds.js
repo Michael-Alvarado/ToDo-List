@@ -9,13 +9,11 @@ const seedDatabase = async () => {
 
 	const users = await User.bulkCreate(userData, {
 		individualHooks: true,
-		returning: true,
+	
 	});
 
-	const family = await Family.bulkCreate(familyData, {
-		individualHooks: true,
-		returning: true,
-	});
+	// console.log(users)
+	const family = await Family.bulkCreate(familyData);
 
 	process.exit(0);
 };
