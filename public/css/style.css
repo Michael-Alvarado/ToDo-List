@@ -38,18 +38,6 @@ body {
     padding: 20px 100px;
 }
 
-footer {
-    position: absolute;
-    bottom: 5%;
-    left: 43%;
-    text-align: center;
-}
-
-footer span {
-    font-weight: bold;
-    color: var(--bittersweet);
-}
-
 
 /* homepage.handlebar */
 .center {
