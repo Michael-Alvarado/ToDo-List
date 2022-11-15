@@ -19,11 +19,14 @@ Family.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // due_date: {
+    //   type: DataTypes.DATE,
+    // },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'user',
+        model: 'User',
         key: 'id'
       },
     },
@@ -33,7 +36,7 @@ Family.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'family',
+    modelName: 'Family',
   }
 )
 

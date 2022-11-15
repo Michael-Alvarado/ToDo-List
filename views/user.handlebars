@@ -4,19 +4,13 @@
 
 {{#if families.length}}
 <section>
-    <h2>Family Tree</h2>
+    <h2>Your Todos</h2>
     {{#each families as |family|}}
     {{> user-details family}}
     {{/each}}
 </section>
 {{/if}}
 
-<button type="submit" class="btn"><a href="/user/new">+ New Role</a></button>
+<button type="submit" class="btn"><a href="/user/new">+ New Task</a></button>
 
 <script src="/js/add-role.js"></script>
-
-
-
-
-
-

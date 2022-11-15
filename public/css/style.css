@@ -4,6 +4,7 @@
     --deep-saffron: #FF9B42;
     --baby-powder: #FFFFFB;
     --bittersweet: #FF6B6C;
+    --green: #009933;
 }
 
 * {
@@ -11,8 +12,88 @@
     font-family: sans-serif, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
 }
 
+/* main.handlebar */
 body {
-    background-color: var(--dark-blu-gray);
+    margin: 0;
+    padding: 0;
+    background-image: url('/images/homepage.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.navbar {
+    height: 80px;
+    width: 100%;
+    background: var(--deep-saffron);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 140px;
+    height: auto;
+    padding: 20px 100px;
+}
+
+footer {
+    position: absolute;
+    bottom: 5%;
+    left: 43%;
+    text-align: center;
+}
+
+footer span {
+    font-weight: bold;
+    color: var(--bittersweet);
+}
+
+
+/* homepage.handlebar */
+.center {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+}
+
+.center h1 {
+    color: var(--green);
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.center p {
+    color: var(--green);
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.center button{
+    margin: 35px 280px; 
+}
+
+#button {
+    height: 50px;
+    width: 150px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffb3b3;
+    background: red;
+    border: 1px solid #cc0000;
+    outline: none;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: .5s;
+}
+
+#button button:hover {
+    background: #cc0000;
 }
 
 #tooltip {
@@ -21,7 +102,12 @@ body {
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 13px;
-  }
+}
+
+@media screen and (max-width: 1060px) {
+
+} 
+
 
 /* body {
     margin: 0;
