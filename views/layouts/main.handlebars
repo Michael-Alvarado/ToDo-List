@@ -28,7 +28,7 @@
     </nav>
 
     {{!-- the real body --}}
-    <main>
+    <main class="main">
         <div class="container container-fluid mt-5">
             
             {{{ body }}}
@@ -37,7 +37,10 @@
     </main>
 
     {{!-- TODO: will add the footer at the last --}}
-    <footer>Design by the <span>AppMonster</span> Team</footer>
+    <div class="footer">
+        {{> footer }}
+    </div>
+    
 
     {{#if logged_in}}
     <script src="/js/logout.js"></script>
