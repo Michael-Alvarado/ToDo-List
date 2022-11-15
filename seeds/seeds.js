@@ -1,9 +1,8 @@
 const sequelize = require('../config/connection');
-const { User, Family, Chore } = require('../models');
+const { User, Family } = require('../models');
 
 const userData = require('./userData');
 const familyData = require('./familyData');
-const choreData = require('./choreData');
 
 const seedDatabase = async () => {
 	await sequelize.sync({ force: true });
@@ -14,11 +13,6 @@ const seedDatabase = async () => {
 	});
 
 	const family = await Family.bulkCreate(familyData, {
-		individualHooks: true,
-		returning: true,
-	});
-
-	const chores = await Chore.bulkCreate(choreData, {
 		individualHooks: true,
 		returning: true,
 	});

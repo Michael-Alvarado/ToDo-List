@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Family, Chore } = require('../../models');
+const { User, Family } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 /* localhost:3001/api/family/ -> create a GET route to see the response (use insomnia) */
