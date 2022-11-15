@@ -15,6 +15,14 @@ body {
     background-color: var(--dark-blu-gray);
 }
 
+#tooltip {
+    background-color: var(--deep-saffron);
+    color: var(--baby-powder);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
 /* body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;

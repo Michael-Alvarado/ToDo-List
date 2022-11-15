@@ -21,8 +21,8 @@
         <a class="navbar-brand" href="/">Home</a>
         {{#if logged_in}}
         {{!-- TODO: update the family and User route later --}}
-        <a class="navbar-brand" href="/#">User</a>
-        <a class="navbar-brand" href="/#">Family</a>
+        <a class="navbar-brand" href="/user">User</a>
+        <a class="navbar-brand" href="/family">Family</a>
         <a class="navbar-brand" href="/user" id="logout">Logout [{{name}}]</a>
         {{else}}
         <a class="navbar-brand" href="/login">Login</a>
@@ -50,7 +50,6 @@
     {{#if logged_in}}
     <script src="/js/logout.js"></script>
     {{/if}}
-
 
 </body>
 

@@ -14,14 +14,6 @@ const withAuth = (req, res, next) => {
 	}
 };
 
-// router.post(
-// 	'/login',
-// 	passport.authenticate('local', { failureRedirect: '/login' }),
-// 	function (req, res) {
-// 		res.redirect('/');
-// 	}
-// );
-
 /* Configure password authentication strategy.
  *
  * The `LocalStrategy` authenticates users by verifying a username and password.

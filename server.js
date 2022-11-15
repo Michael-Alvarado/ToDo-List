@@ -5,10 +5,11 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const passport = require('passport');
-const mySQL = require('mysql2');
+// const mySQL = require('mysql2');
 // const { User } = require('./models');
 const indexRouter = require('./controllers/index');
 const helpers = require('./utils/helpers');
+const { createPopper } = require('@popperjs/core');
 
 // const bootstrap = require('bootstrap');
 
@@ -25,7 +26,7 @@ const sess = {
 	secret: 'We need to fix this later',
 	cookie: {
 		// TODO: SHOULD BE 300000 (5 0s), but use (6 0s) for now, otherwise it will log out automatically after 5 mins
-		maxAge: 3000000, //5 mins = 5 * 60 * 1000 
+		maxAge: 3000000, //5 mins = 5 * 60 * 1000
 		httpOnly: true,
 		secure: false,
 		sameSite: 'strict',
