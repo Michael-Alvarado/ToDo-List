@@ -40,31 +40,6 @@ body {
 
 
 /* homepage.handlebar */
-.center {
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    transform: translate(-50%, -50%);
-    user-select: none;
-}
-
-.center h1 {
-    color: var(--green);
-    font-size: 3rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-.center p {
-    color: var(--green);
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-.center button{
-    margin: 35px 280px; 
-}
 
 #button {
     height: 50px;
@@ -92,9 +67,6 @@ body {
     font-size: 13px;
 }
 
-@media screen and (max-width: 1060px) {
-
-} 
 
 
 /* body {
