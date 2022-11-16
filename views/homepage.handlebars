@@ -1,11 +1,22 @@
-<div class="text-center">
-    <h1 class="position-absolute top-10 start-50 translate-middle fw-bold text-success">Welcome to appMonster</h1>
-    <p class="position-absolute bottom-50 end-50 text-success"> We are a non-profit organization that help people track their task at night, while we attack and defend the multiverse during the day... or is that backwards? Anyways I hope you enjoy!</p>
-    <a href="/login"><button class="position-absolute top-50 start-50" id="button" aria-describedby="tooltip">Get Started</button></a>
+<div>
+    {{!-- <h2 class="position-absolute top-50 start-50 translate-middle text-center text-success"> We are a non-profit organization that help people track their task at night, while we attack and defend the multiverse during the day... or is that backwards? Anyways I hope you enjoy!</h2> --}}
+    {{!-- <section class="homepage-section">
+        <div class="wrapper">
+            <div class="static-txt">AppMonster</div>
+            <ul class="dynamic-txts">
+                <li><span>is a non-profit organization</span></li>
+                <li><span>helps people track their tasks</span></li>
+                <li><span>attacks and defends the multiverse</span></li>
+                <li><span>hopes you enjoy</span></li>
+            </ul>
+        </div>        
+    </section> --}}
+    <a href="/login"><button class="position-absolute bottom-50 end-50" id="button" aria-describedby="tooltip">Get Started</button></a>
     <div id="tooltip" role="tooltip">You'll need to login or sign up first!<div id="arrow" data-popper-arrow></div></div>
     
 </div>
 
+<script src="/js/script.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script>
     const button = document.querySelector('#button');
@@ -64,4 +75,3 @@
         button.addEventListener(event, hide);
     });
 </script>
-

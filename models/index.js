@@ -1,15 +1,14 @@
 const User = require('./User');
-const Family = require('./Family'); //really just meant role 
+const Post = require('./Post');
 
-User.hasMany(Family, {
+User.hasMany(Post, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+Post.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
 
-Family.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'CASCADE',
-});
-
-module.exports = { User, Family}
-
+module.exports = { User, Post};

@@ -17,8 +17,7 @@
 1. [Description](#description)
 2. [User Story](#user-story)
 3. [Screenshot](#screenshot)
-4. [Video](#video)
-5. [Heroku](#heroku)
+4. [Heroku](#heroku)
 5. [Installation](#installation)
 6. [License](#license)
 7. [Contributing](#contributing)
@@ -26,20 +25,24 @@
 9. [Questions](#contact-information)
 
 ## Description
-To build a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers' posts as well. The app is available on [Heroku](https://still-tundra-30490.herokuapp.com/). The app will follow the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express session npm package for authentication
+To build a todo list website so that user could keep tracker of their todos. The app is available on [Heroku](). The app will follow the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express session npm package for authentication
 
 ## User Story
 ```md
-AS A developer who writes about tech
-I WANT a CMS-style blog site
-SO THAT I can publish articles, blog posts, and my thoughts and opinions
+AS A developer who wants to keep track of todos
+I WANT a todo-list site
+SO THAT I can post, save, update, and delete my todos
 ```
 
 ## Screenshot
 
+![](public/images/screen-shot-1.png)
 
-## Video
-Check out the [walk-through video]().
+![](public/images/screen-shot-2.png)
+
+![](public/images/screen-shot-3.png)
+
+![](public/images/screen-shot-4.png)
 
 # Heroku
 Check out the live application in [Heroku]()
@@ -81,10 +84,13 @@ Following a code review, your feature will be merged.
 ---
 
 ## Test:
-It is recommended that you follow this workflow:
+This is no test available for now
 
 ---
 
 ## Contact Information
-* GitHub Username: [shelldan](https://github.com/shelldan)
-* 
+* [Robert Barnes](https://github.com/okingdomz)
+* [Xiao Li](https://github.com/shelldan)
+* [William Krumbach](https://github.com/krumbelievable)
+* [Michael Alvarado](https://github.com/Michael-Alvarado)
+* [Zinia Quintanilla](https://github.com/ZiniaQ)

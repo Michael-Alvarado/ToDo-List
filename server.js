@@ -3,65 +3,45 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
-const sequelize = require('./config/connection');
-const passport = require('passport');
-// const mySQL = require('mysql2');
-// const { User } = require('./models');
-const indexRouter = require('./controllers/index');
 const helpers = require('./utils/helpers');
-const { createPopper } = require('@popperjs/core');
-
-// const bootstrap = require('bootstrap');
-
-// Create a new sequelize store using the express-session package
+const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// set up handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-	//TODO: We need to fix the secret later
-	secret: 'We need to fix this later',
-	cookie: {
-		// TODO: SHOULD BE 300000 (5 0s), but use (6 0s) for now, otherwise it will log out automatically after 5 mins
-		maxAge: 3000000, //5 mins = 5 * 60 * 1000
-		httpOnly: true,
-		secure: false,
-		sameSite: 'strict',
-	},
-	resave: false, // don't save session if unmodified
-	saveUninitialized: true, //
-	store: new SequelizeStore({
-		db: sequelize,
-	}),
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+        maxAge: 300000, // 5 mins = 5 * 60 * 1000
+        httpOnly: true,
+        secure: false,
+        sameSite: 'strict',
+    },
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
 };
 
 app.use(session(sess));
-app.use(passport.authenticate('session'));
 
+// Inform Express.js on which template engine to use
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname + '/node_modules/bootstrap/dist')));
 
 app.use(routes);
 
-app.use(
-	'/css',
-	express.static(path.join(__dirname + '/node_modules/bootstrap/dist/css'))
-);
-app.use(
-	'/js',
-	express.static(path.join(__dirname + '/node_modules/bootstrap/dist/js'))
-);
-// app.use();
-
-app.use('/', indexRouter);
-
-sequelize.sync({ force: false }).then(() => {
-	app.listen(PORT, () => console.log('Now listening'));
+sequelize.sync({ force: false }).then(()=>{
+    app.listen(PORT, () => console.log('Now listening at http://localhost:' + PORT));
 });
