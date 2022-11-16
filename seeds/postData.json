@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Play chess",
+    "content": "Meeting with Brian this Sunday to play chess",
+    "user_id": 1
+  },
+  {
+      "title": "Marathon",
+      "content": "Meeting with Bobby to run a marathon this Saturday",
+      "user_id":2
+  },
+  {
+      "title": "Grocery Shopping",
+      "content": "Need to go out for grocery shopping this weekend",
+      "user_id": 3
+  }
+]
